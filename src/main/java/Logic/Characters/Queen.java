@@ -22,17 +22,17 @@ public class Queen extends Piece {
     @Override
     public boolean omitEnemy(Position start, Position newPos) {
         if(Math.abs(start.x-newPos.x)==0) {
-            // y - const
-            for(int i = start.y; i<newPos.y; i++) {
-                if(isPieceThere(new Position(start.y, i))) {
+            // x - const
+            for(int i = start.y+1; i<newPos.y; i++) {
+                if(checkForPiece(new Position(i, start.x))) {
                     System.out.println("Piece is in the scope u have to change your position selection!");
                     this.board.playersTurn(this.player);
                     return false;
                 }
             }
-        } else if(Math.abs(start.y-newPos.y)==0) {
+        } else if(Math.abs(start.x-newPos.x)==0) {
             // x - const
-            for(int i = start.x; i<newPos.x; i++) {
+            for(int i = start.y+1; i<newPos.y; i++) {
                 if(isPieceThere(new Position(i, start.x))) {
                     System.out.println("Piece is in the scope u have to change your position selection!");
                     this.board.playersTurn(this.player);

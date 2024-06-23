@@ -47,6 +47,12 @@ abstract public class Piece {
         return false;
     }
     protected abstract boolean isValidMove(Position newPosition);
+     protected boolean checkForPiece(Position pos) {
+         if(this.board.GRID[pos.y][pos.x] != null) {
+             return true;
+         }
+         return false;
+     }
     protected boolean isPieceThere(Position newPosition) {
         if(this.board.GRID[newPosition.y][newPosition.x] != null) {
 

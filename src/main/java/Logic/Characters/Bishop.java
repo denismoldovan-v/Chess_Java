@@ -26,7 +26,7 @@ public class Bishop extends Piece {
     @Override
     public boolean omitEnemy(Position start, Position newPos) {
         for(int i = 0; i<(Math.abs(newPos.x-start.x)); i++) {
-            if(isPieceThere(new Position((start.y+i),(start.x+i)))){
+            if(checkForPiece(new Position((start.y+i),(start.x+i)))){
                 System.out.println("Piece is in the scope u have to change your position selection!");
                 this.board.playersTurn(this.player);
                 return false;

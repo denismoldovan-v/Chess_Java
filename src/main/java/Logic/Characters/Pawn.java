@@ -36,8 +36,8 @@ public class Pawn extends Piece {
 
     @Override
     public boolean omitEnemy(Position start, Position newPos) {
-        for(int i = start.y; i<newPos.y; i++) {
-            if(isPieceThere(new Position(i,start.x))) {
+        for(int i = start.y+1; i<newPos.y; i++) {
+            if(checkForPiece(new Position(i,start.x))) {
                 System.out.println("Piece is in the scope u have to change your position selection!");
                 this.board.playersTurn(this.player);
                 return false;
