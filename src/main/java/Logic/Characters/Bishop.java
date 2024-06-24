@@ -25,11 +25,53 @@ public class Bishop extends Piece {
 
     @Override
     public boolean omitEnemy(Position start, Position newPos) {
-        for(int i = 0; i<(Math.abs(newPos.x-start.x)); i++) {
-            if(checkForPiece(new Position((start.y+i),(start.x+i)))){
-                System.out.println("Piece is in the scope u have to change your position selection!");
-                this.board.playersTurn(this.player);
-                return false;
+        //y-, x-
+        if((newPos.y - start.y)<0 && (newPos.x-start.x)<0) {
+            for(int i = 1; i<Math.abs(newPos.y - start.y)-1; i++) {
+                if(board.GRID[start.y][i] == this) {
+                    continue;
+                }
+                if(checkForPiece(new Position(start.y-i,start.x-i))) {
+                    System.out.println("Invalid Move, the piece is in the scope!");
+                    this.board.playersTurn(this.player);
+                    return false;
+                }
+            }
+            //y-, x+
+        } else if((newPos.y - start.y)<0 && (newPos.x-start.x)>0) {
+            for(int i = 1; i<Math.abs(newPos.y - start.y)-1; i++) {
+                if(board.GRID[start.y][i] == this) {
+                    continue;
+                }
+                if(checkForPiece(new Position(start.y-i,start.x+i))) {
+                    System.out.println("Invalid Move, the piece is in the scope!");
+                    this.board.playersTurn(this.player);
+                    return false;
+                }
+            }
+            //y+, x-
+        } else if((newPos.y - start.y)>0 && (newPos.x-start.x)<0) {
+            for(int i = 1; i<Math.abs(newPos.y - start.y)-1; i++) {
+                if(board.GRID[start.y][i] == this) {
+                    continue;
+                }
+                if(checkForPiece(new Position(start.y+i,start.x-i))) {
+                    System.out.println("Invalid Move, the piece is in the scope!");
+                    this.board.playersTurn(this.player);
+                    return false;
+                }
+            }
+        } //y+,x+
+        else {
+            for(int i = 1; i<Math.abs(newPos.y - start.y)-1; i++) {
+                if(board.GRID[start.y][i] == this) {
+                    continue;
+                }
+                if(checkForPiece(new Position(start.y+i,start.x+i))) {
+                    System.out.println("Invalid Move, the piece is in the scope!");
+                    this.board.playersTurn(this.player);
+                    return false;
+                }
             }
         }
         return true;

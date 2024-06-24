@@ -36,9 +36,18 @@ public class Pawn extends Piece {
 
     @Override
     public boolean omitEnemy(Position start, Position newPos) {
-        for(int i = start.y+1; i<newPos.y; i++) {
-            if(checkForPiece(new Position(i,start.x))) {
-                System.out.println("Piece is in the scope u have to change your position selection!");
+        //x = const
+        //y+
+        if((newPos.y - start.y)>0) {
+            if(checkForPiece(new Position(start.y+1, start.x))) {
+                System.out.println("Invalid Move, the piece is in the scope!");
+                this.board.playersTurn(this.player);
+                return false;
+            }
+        } //y-
+        else {
+            if(checkForPiece(new Position(start.y-1, start.x))) {
+                System.out.println("Invalid Move, the piece is in the scope!");
                 this.board.playersTurn(this.player);
                 return false;
             }

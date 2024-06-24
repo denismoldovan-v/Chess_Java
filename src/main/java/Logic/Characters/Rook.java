@@ -24,20 +24,26 @@ public class Rook extends Piece {
 
     @Override
     public boolean omitEnemy(Position start, Position newPos) {
-        if(Math.abs(start.y-newPos.y)==0) {
-            // y - const
-            for(int i = start.x+1; i<newPos.x; i++) {
-                if(isPieceThere(new Position(start.y, i))) {
-                    System.out.println("Piece is in the scope u have to change your position selection!");
+        //x = const
+        if(start.x == newPos.x) {
+            for(int i = Math.min(start.y, newPos.y); i<Math.max(start.y, newPos.y)-1; i++) {
+                if(board.GRID[start.y][i] == this) {
+                    continue;
+                }
+                if(checkForPiece(new Position(i,start.x))) {
+                    System.out.println("Invalid Move, the piece is in the scope!");
                     this.board.playersTurn(this.player);
                     return false;
                 }
             }
-        } else if(Math.abs(start.x-newPos.x)==0) {
-            // x - const
-            for(int i = start.y+1; i<newPos.y; i++) {
-                if(checkForPiece(new Position(i, start.x))) {
-                    System.out.println("Piece is in the scope u have to change your position selection!");
+            //y = const
+        } else if(start.y == newPos.y) {
+            for(int i = Math.min(start.x, newPos.x); i<Math.max(start.x, newPos.x)-1; i++) {
+                if(board.GRID[start.y][i] == this) {
+                    continue;
+                }
+                if(checkForPiece(new Position(i,start.x))) {
+                    System.out.println("Invalid Move, the piece is in the scope!");
                     this.board.playersTurn(this.player);
                     return false;
                 }
