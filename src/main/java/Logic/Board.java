@@ -27,6 +27,8 @@ public class Board {
         }
     }
     private void boardRepresentation() {
+        System.out.println();
+        System.out.println("Captured Pieces: " + capturedPiecesOfEnemyByColor("black"));
         for(int i = 0; i<this.GRID.length; i++) {
             System.out.println();
             System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------1,");
@@ -42,6 +44,8 @@ public class Board {
             }
         }
         System.out.println();
+        System.out.println();
+        System.out.println("Captured Pieces: " + capturedPiecesOfEnemyByColor("white"));
         System.out.println();
     }
 
@@ -162,6 +166,15 @@ public class Board {
                 return player;
             }
         }
+        return null;
+    }
+    private ArrayList<String> capturedPiecesOfEnemyByColor(String color) {
+        for(Player p : players) {
+            if(p.color == color) {
+                return p.getCapturedPieces();
+            }
+        }
+        System.out.println("No player of such color!");
         return null;
     }
 }

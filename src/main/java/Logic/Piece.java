@@ -44,6 +44,7 @@ abstract public class Piece {
                 return true;
             }
         }
+        this.board.playersTurn(this.player);
         return false;
     }
     protected abstract boolean isValidMove(Position newPosition);
@@ -73,6 +74,7 @@ abstract public class Piece {
             } else if(holdingPiece.color != this.color) {
                 removePiece(holdingPiece);
             }
+            return true;
         }
         return false;
     }
@@ -101,6 +103,7 @@ abstract public class Piece {
                         piece.position = null;
                         System.out.println(this.position);
                         this.player.points++;
+                        this.player.CapturePiece(piece);
                         System.out.println(this.player.points);
                         break outer;
                     }

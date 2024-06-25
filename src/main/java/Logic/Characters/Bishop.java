@@ -17,7 +17,7 @@ public class Bishop extends Piece {
     }
 
     protected boolean isValidMove(Position newPosition) {
-        if(Math.abs((this.position.y - newPosition.y)) == Math.abs((this.position.x-this.position.x))) {
+        if(Math.abs((this.position.y - newPosition.y)) == Math.abs((this.position.x-newPosition.x))) {
             return true;
         }
         return false;
